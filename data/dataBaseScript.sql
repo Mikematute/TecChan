@@ -1,27 +1,27 @@
 CREATE TABLE Users (
-	fName VARCHAR(30) NOT NULL,
-  lName VARCHAR(30) NOT NULL,
   username VARCHAR(50) NOT NULL PRIMARY KEY,
   passwrd VARCHAR(50) NOT NULL,
 	email VARCHAR(30) NOT NULL,
-	gender VARCHAR(10) NOT NULL,
-	country VARCHAR(10) NOT NULL
+	rol int NOT NULL
 );
-CREATE TABLE Comments (
+CREATE TABLE Thread (
 	id int NOT NULL PRIMARY KEY AUTO_INCREMENT,
-  username VARCHAR(50) NOT NULL,
-  comment VARCHAR(200) NOT NULL
+  board VARCHAR(50) NOT NULL,
+  name VARCHAR(200) NOT NULL
+);
+CREATE TABLE Post (
+	id int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  ThreadId int NOT NULL,
+  user VARCHAR(50) NOT NULL,
+	content VARCHAR(500) NOT NULL,
+	fecha date NOT NULL
 );
 
-INSERT INTO Users(fName, lName, username, passwrd, email, gender, country)
-VALUES  ('Miguel', 'Rosado', 'mikematute', 'mikematute01', 'mikematute@hotmail.com', 'm', 'Me'),
-('Thomas', 'Omaley', 'thomas1961', 'test1', 'thoom1961@jourrapide.com', 'm', 'Me'),
-('Sara', 'Pattick', 'saps1963', 'test2', 'saps1963@einrot.com', 'f', 'Me'),
-('Oscar', 'Tunskten', 'TheOscar', 'test3', 'osts1936@fleckens.hu', 'm', 'Me'),
-('Daniel', 'Vinck', 'daniel1952', 'test4', 'dinvis1952@teleworm.us', 'm', 'Me');
+INSERT INTO Users(username, passwrd, email, rol)
+VALUES  ('mikematute', 'mikematute01', 'mikematute@hotmail.com', '9');
 
-INSERT INTO Comments(username, comment)
-VALUES  ('thomas1961', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua [...]'),
-('saps1963', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua [...]'),
-('TheOscar', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua [...]'),
-('daniel1952', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua [...]');
+INSERT INTO Thread(id, board, name)
+VALUES  (99, 'Main', 'Bienvenidos');
+
+INSERT INTO Post(ThreadId, user, content, fecha)
+VALUES  (99, 'mikematute', 'Bienvenidos al foro chavos. este es un mensaje de bienvenida', '2017-10-24');
