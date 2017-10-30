@@ -1,5 +1,6 @@
 CREATE TABLE Users (
   username VARCHAR(50) NOT NULL PRIMARY KEY,
+  matricula VARCHAR(50) NOT NULL,
   passwrd VARCHAR(50) NOT NULL,
 	email VARCHAR(30) NOT NULL,
 	rol int NOT NULL
@@ -18,7 +19,7 @@ CREATE TABLE Post (
 );
 
 INSERT INTO Users(username, passwrd, email, rol)
-VALUES  ('mikematute', 'mikematute01', 'mikematute@hotmail.com', '9');
+VALUES  ('mikematute', 'mikematute01', 'A00815329', 'mikematute@hotmail.com', '9');
 
 INSERT INTO Thread(id, board, name)
 VALUES  (99, 'Main', 'Bienvenidos');

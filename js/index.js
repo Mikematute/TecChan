@@ -19,9 +19,10 @@ $(document).ready(function(){
 
 	});
 */
-/*
-	$("#submitBtt").click(function(){
 
+	$(".boardName").click(function(){
+    var board = $(this).attr("id");
+    $(location).attr('href', 'Board.html?board='+board);
 	});
-*/
+
 });

@@ -13,6 +13,9 @@ h1{
 	padding: 20px;
 	color: white;
 }
+h3{
+	cursor: pointer;
+}
 div{
 	background: #a5ff77;
 	border: 1px solid #2d7a07;
