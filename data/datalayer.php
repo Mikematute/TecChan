@@ -95,29 +95,25 @@
     }
   }
 
-  function getProfile(){
+  function getBoard($bName){
     $connection = databaseConnection();
 
     if ($connection != null){
-      $sql = "SELECT * FROM Users WHERE username = 'mikematute'";
+      $sql = "SELECT * FROM Thread WHERE board = '$bName'";
 
       $result = $connection->query($sql);
+  		$response = array();
 
-      if ($result->num_rows > 0){
+  		if ($result->num_rows > 0){
   			while($row = $result->fetch_assoc()){
-  				$response = array("firstName"=>$row["fName"],
-  													"lastName"=>$row["lName"],
-  													"username"=>$row["username"],
-  													"email"=>$row["email"],
-  													"gender"=>$row["gender"],
-  													"country"=>$row["country"],
-                            "mess"=>"SUCCESS");
+  				array_push($response, array("thread"=>$row["name"],"id"=>$row["id"]));
   			}
 
         $connection->close();
-        return $response;
+        //return array("mess"=>"SUCCESS", "res"=>$response);
+        return $response
 
-  		}else{
+      }else{
         $connection->close();
         return array("mess"=>"406");
       }

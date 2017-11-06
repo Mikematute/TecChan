@@ -3,9 +3,12 @@
   header('Accept: application/json');
   require_once __DIR__ . '/datalayer.php';
 
-  $action = $_POST["action"];
+  //$action = $_POST["action"];
+
+  echo json_encode("HellOWorld");
 
   switch($action){
+    /*
     case "LOGIN" :        loginFunction();
                           break;
     case "REGIS" :        regisFunction();
@@ -16,13 +19,12 @@
                           break;
     case "delSess" :      delSess();
                           break;
-    case "getComments":   getcomm();
-                          break;
-    case "PROFILE":       profile();
+                          */
+    case "getBoard":      getBoard();
                           break;
 
   }
-
+/*
   function loginFunction(){
     $uName = $_POST["uName"];
 		$uPass = $_POST["uPass"];
@@ -80,6 +82,8 @@
                     break;
       case "409" :  header("HTTP/1.1 409 User already in database");
                     die("Please provide another Username.");
+      case "501" :  header("HTTP/1.1 501 I dont know");
+                    die("Please provide another Username.");
     }
   }
 
@@ -130,10 +134,13 @@
   		genericErrorFunction("406a");
   	}
   }
+*/
+  function getBoard(){
+    $bName = $_POST["bName"];
+    $logResponse = getBoard($bName);
 
-  function getcomm(){
-    $logResponse = getComments();
-
+    echo json_encode($logResponse);
+    /*
     if ($logResponse["mess"] == "SUCCESS"){
     //if (True){
       echo json_encode($logResponse["res"]);
@@ -141,17 +148,7 @@
       genericErrorFunction($logResponse["mess"]);
       //genericErrorFunction("500");
     }
+    */
   }
-  function profile(){
-    $logResponse = getProfile();
-
-    if ($logResponse["mess"] == "SUCCESS"){
-
-      echo json_encode($logResponse);
-    }else{
-      genericErrorFunction($logResponse["mess"]);
-    }
-  }
-
 
 ?>
