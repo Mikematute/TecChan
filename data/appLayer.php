@@ -3,12 +3,11 @@
   header('Accept: application/json');
   require_once __DIR__ . '/datalayer.php';
 
-  //$action = $_POST["action"];
+  $action = $_POST["action"];
 
-  echo json_encode("HellOWorld");
 
   switch($action){
-    /*
+
     case "LOGIN" :        loginFunction();
                           break;
     case "REGIS" :        regisFunction();
@@ -19,8 +18,7 @@
                           break;
     case "delSess" :      delSess();
                           break;
-                          */
-    case "getBoard":      getBoard();
+    case "getBoard":      checkBoard();
                           break;
 
   }
@@ -135,12 +133,12 @@
   	}
   }
 */
-  function getBoard(){
+  function checkBoard(){
     $bName = $_POST["bName"];
     $logResponse = getBoard($bName);
 
-    echo json_encode($logResponse);
-    /*
+    //echo json_encode($logResponse);
+
     if ($logResponse["mess"] == "SUCCESS"){
     //if (True){
       echo json_encode($logResponse["res"]);
@@ -148,7 +146,7 @@
       genericErrorFunction($logResponse["mess"]);
       //genericErrorFunction("500");
     }
-    */
+
   }
 
 ?>

@@ -99,7 +99,7 @@
     $connection = databaseConnection();
 
     if ($connection != null){
-      $sql = "SELECT * FROM Thread WHERE board = '$bName'";
+      $sql = "SELECT * FROM Thread WHERE name = '$bName'";
 
       $result = $connection->query($sql);
   		$response = array();
@@ -110,8 +110,8 @@
   			}
 
         $connection->close();
-        //return array("mess"=>"SUCCESS", "res"=>$response);
-        return $response
+        return array("mess"=>"SUCCESS", "res"=>$response);
+        return $response;
 
       }else{
         $connection->close();

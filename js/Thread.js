@@ -4,10 +4,10 @@ $(document).ready(function(){
       var results = new RegExp('[\?&]' + paramName + '=([^&#]*)').exec(window.location.href);
       return results[1] || 0;
     }
-  var boardName = getUrlParameter("board")
+  var threadName = getUrlParameter("thread")
 
-  $("#boardName").text(boardName);
-
+  $("#ThreadName").text(threadName);
+/*
   var jsonboard = {
                       "action": "getBoard",
 											"bName": boardName
@@ -40,12 +40,7 @@ $(document).ready(function(){
 
 	});
 
-  $("#cont").on("click", ".ThreadName", function(){
-    var thread = $(this).attr("id");
-    $(location).attr('href', 'Thread.html?thread='+thread);
-	});
-
-
+*/
 
 
 });
