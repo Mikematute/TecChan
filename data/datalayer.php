@@ -99,7 +99,7 @@
     $connection = databaseConnection();
 
     if ($connection != null){
-      $sql = "SELECT * FROM Thread WHERE name = '$bName'";
+      $sql = "SELECT * FROM Thread WHERE board = '$bName'";
 
       $result = $connection->query($sql);
   		$response = array();
@@ -107,6 +107,88 @@
   		if ($result->num_rows > 0){
   			while($row = $result->fetch_assoc()){
   				array_push($response, array("thread"=>$row["name"],"id"=>$row["id"]));
+  			}
+
+        $connection->close();
+        return array("mess"=>"SUCCESS", "res"=>$response);
+        return $response;
+
+      }else{
+        $connection->close();
+        return array("mess"=>"406");
+      }
+    }else{
+      return array("mess"=>"500");
+    }
+  }
+
+  function getSearch($sValue){
+    $connection = databaseConnection();
+
+    if ($connection != null){
+      $sql = "SELECT * FROM Thread WHERE name LIKE '%" . $sValue . "%'";
+
+      $result = $connection->query($sql);
+  		$response = array();
+
+  		if ($result->num_rows > 0){
+  			while($row = $result->fetch_assoc()){
+  				array_push($response, array("thread"=>$row["name"],"id"=>$row["id"]));
+  			}
+
+        $connection->close();
+        return array("mess"=>"SUCCESS", "res"=>$response);
+        return $response;
+
+      }else{
+        $connection->close();
+        return array("mess"=>"406");
+      }
+    }else{
+      return array("mess"=>"500");
+    }
+  }
+
+  function getThreadName($tID){
+    $connection = databaseConnection();
+
+    if ($connection != null){
+      $sql = "SELECT * FROM Thread WHERE id = '$tID'";
+
+
+      $result = $connection->query($sql);
+
+  		if ($result->num_rows > 0){
+  			while ($row = $result->fetch_assoc()){
+          $response = array("tName"=>$row["name"],
+  													"mess"=>"SUCCESS");
+  			}
+
+        $connection->close();
+        return $response;
+
+  		}else{
+        $connection->close();
+        return array("mess"=>"406");
+      }
+    }else{
+      return array("mess"=>"500");
+    }
+
+  }
+
+  function getPosts($tID){
+    $connection = databaseConnection();
+
+    if ($connection != null){
+      $sql = "SELECT * FROM Post WHERE ThreadId = '$tID'";
+
+      $result = $connection->query($sql);
+  		$response = array();
+
+  		if ($result->num_rows > 0){
+  			while($row = $result->fetch_assoc()){
+  				array_push($response, array("post"=>$row["content"],"username"=>$row["user"],"date"=>$row["fecha"]));
   			}
 
         $connection->close();

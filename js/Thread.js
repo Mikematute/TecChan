@@ -6,16 +6,38 @@ $(document).ready(function(){
     }
   var threadName = getUrlParameter("thread")
 
-  $("#ThreadName").text(threadName);
-/*
-  var jsonboard = {
-                      "action": "getBoard",
-											"bName": boardName
+  //$("#ThreadName").text(threadName);
+
+  var jsonName = {
+                      "action": "getThreadName",
+											"tID": threadName
 										};
 	$.ajax({
 		url : "./data/appLayer.php",
 		type : "POST",
-		data : jsonboard,
+		data : jsonName,
+		ContentType : "application/json",
+		dataType : "json",
+		success : function(dataReceived){
+      $("#ThreadName").text(dataReceived.tName);
+      //console.log(dataReceived);
+		},
+		error : function(errorMessage){
+			//If there is no cookie, we do nothing
+		}
+
+	});
+
+
+
+  var jsonPosts = {
+                      "action": "getPosts",
+											"tID": threadName
+										};
+	$.ajax({
+		url : "./data/appLayer.php",
+		type : "POST",
+		data : jsonPosts,
 		ContentType : "application/json",
 		dataType : "json",
 		success : function(dataReceived){
@@ -26,8 +48,10 @@ $(document).ready(function(){
 			for (var ik=0; ik<leng; ik++){
 				//console.log(data[ik]["id"]);
 
-				newHtml += '<div class="Thread">';
-				newHtml += '<h3 class="ThreadName" id=' + data[ik]["id"] + '>' + data[ik]["thread"] + '<h3>';
+				newHtml += '<div class="Post">';
+				newHtml += '<p>' + data[ik]["post"] + '<p>';
+        newHtml += '<p> User:' + data[ik]["username"] + '<p>';
+        newHtml += '<p> Date:' + data[ik]["date"] + '<p>';
 				newHtml += '</div>';
 
 			}
@@ -39,8 +63,5 @@ $(document).ready(function(){
 		}
 
 	});
-
-*/
-
 
 });

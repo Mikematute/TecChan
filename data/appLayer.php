@@ -20,9 +20,15 @@
                           break;
     case "getBoard":      checkBoard();
                           break;
+    case "search":        search();
+                          break;
+    case "getThreadName": threadName();
+                          break;
+    case "getPosts":      sPost();
+                          break;
 
   }
-/*
+
   function loginFunction(){
     $uName = $_POST["uName"];
 		$uPass = $_POST["uPass"];
@@ -132,7 +138,7 @@
   		genericErrorFunction("406a");
   	}
   }
-*/
+
   function checkBoard(){
     $bName = $_POST["bName"];
     $logResponse = getBoard($bName);
@@ -146,7 +152,51 @@
       genericErrorFunction($logResponse["mess"]);
       //genericErrorFunction("500");
     }
+  }
 
+  function search(){
+    $sValue = $_POST["sValue"];
+    $logResponse = getSearch($sValue);
+
+    //echo json_encode($logResponse);
+
+    if ($logResponse["mess"] == "SUCCESS"){
+    //if (True){
+      echo json_encode($logResponse["res"]);
+    }else{
+      genericErrorFunction($logResponse["mess"]);
+      //genericErrorFunction("500");
+    }
+  }
+
+  function threadName(){
+    $tID = $_POST["tID"];
+    $logResponse = getThreadName($tID);
+
+    //echo json_encode($logResponse);
+
+    if ($logResponse["mess"] == "SUCCESS"){
+    //if (True){
+      echo json_encode($logResponse);
+    }else{
+      genericErrorFunction($logResponse["mess"]);
+      //genericErrorFunction("500");
+    }
+  }
+
+  function sPost(){
+    $tID = $_POST["tID"];
+    $logResponse = getPosts($tID);
+
+    //echo json_encode($logResponse);
+
+    if ($logResponse["mess"] == "SUCCESS"){
+    //if (True){
+      echo json_encode($logResponse["res"]);
+    }else{
+      genericErrorFunction($logResponse["mess"]);
+      //genericErrorFunction("500");
+    }
   }
 
 ?>
