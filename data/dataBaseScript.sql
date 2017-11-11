@@ -17,6 +17,13 @@ CREATE TABLE Post (
 	content VARCHAR(500) NOT NULL,
 	fecha date NOT NULL
 );
+CREATE TABLE Tips (
+	id int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  user VARCHAR(50) NOT NULL,
+	content VARCHAR(500) NOT NULL,
+	fecha date NOT NULL,
+  state int NOT NULL
+);
 
 INSERT INTO Users(username, passwrd, email, rol)
 VALUES  ('mikematute', 'mikematute01', 'A00815329', 'mikematute@hotmail.com', '9');
@@ -45,3 +52,10 @@ VALUES  (103, 'mikematute', 'Bienvenidos al foro chavos. este es un mensaje de b
 (106, 'mikematute', 'Soy su fan y no se que onda', '2017-10-24'),
 (107, 'mikematute', 'Y me fui a Google', '2017-10-24'),
 (103, 'mikematute', 'Oigan. Se que soy raro pero porfa no me ignoren', '2017-10-25');
+
+INSERT INTO Tips(user, content, fecha, state)
+VALUES  ('mikematute', 'Recuerden Organizarse con sus projectos', '2017-09-11', 1),
+('mikematute', 'Recuerden no jugarle al vergas', '2017-09-11', 2),
+('mikematute', 'EEeeeeeemmmmmm', '2017-09-11', 2),
+('mikematute', 'Siempre es bueno tomar la responsabilidad de no hacer la tarea', '2017-09-11', 2),
+('mikematute', 'Recuerden Organizarse con sus projectos', '2017-09-11', 3);

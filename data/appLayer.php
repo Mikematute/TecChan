@@ -26,6 +26,10 @@
                           break;
     case "getPosts":      sPost();
                           break;
+    case "getTips":       gTips();
+                          break;
+    case "getPend":       gPend();
+                          break;
 
   }
 
@@ -187,6 +191,33 @@
   function sPost(){
     $tID = $_POST["tID"];
     $logResponse = getPosts($tID);
+
+    //echo json_encode($logResponse);
+
+    if ($logResponse["mess"] == "SUCCESS"){
+    //if (True){
+      echo json_encode($logResponse["res"]);
+    }else{
+      genericErrorFunction($logResponse["mess"]);
+      //genericErrorFunction("500");
+    }
+  }
+
+  function gTips(){
+    $logResponse = getTips();
+
+    //echo json_encode($logResponse);
+
+    if ($logResponse["mess"] == "SUCCESS"){
+    //if (True){
+      echo json_encode($logResponse["res"]);
+    }else{
+      genericErrorFunction($logResponse["mess"]);
+      //genericErrorFunction("500");
+    }
+  }
+  function gPend(){
+    $logResponse = getPendientes();
 
     //echo json_encode($logResponse);
 

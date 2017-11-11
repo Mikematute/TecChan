@@ -204,5 +204,59 @@
     }
   }
 
+  function getTips(){
+    $connection = databaseConnection();
+
+    if ($connection != null){
+      $sql = "SELECT * FROM Tips WHERE state = 1";
+
+      $result = $connection->query($sql);
+  		$response = array();
+
+  		if ($result->num_rows > 0){
+  			while($row = $result->fetch_assoc()){
+  				array_push($response, array("post"=>$row["content"],"username"=>$row["user"],"date"=>$row["fecha"]));
+  			}
+
+        $connection->close();
+        return array("mess"=>"SUCCESS", "res"=>$response);
+        return $response;
+
+      }else{
+        $connection->close();
+        return array("mess"=>"406");
+      }
+    }else{
+      return array("mess"=>"500");
+    }
+  }
+
+  function getPendientes(){
+    $connection = databaseConnection();
+
+    if ($connection != null){
+      $sql = "SELECT * FROM Tips WHERE state = 2";
+
+      $result = $connection->query($sql);
+  		$response = array();
+
+  		if ($result->num_rows > 0){
+  			while($row = $result->fetch_assoc()){
+  				array_push($response, array("post"=>$row["content"],"username"=>$row["user"],"date"=>$row["fecha"],"id"=>$row["id"]));
+  			}
+
+        $connection->close();
+        return array("mess"=>"SUCCESS", "res"=>$response);
+        return $response;
+
+      }else{
+        $connection->close();
+        return array("mess"=>"406");
+      }
+    }else{
+      return array("mess"=>"500");
+    }
+  }
+
 
 ?>
