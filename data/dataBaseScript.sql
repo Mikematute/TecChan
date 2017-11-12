@@ -25,8 +25,8 @@ CREATE TABLE Tips (
   state int NOT NULL
 );
 
-INSERT INTO Users(username, passwrd, email, rol)
-VALUES  ('mikematute', 'mikematute01', 'A00815329', 'mikematute@hotmail.com', '9');
+INSERT INTO Users(username, matricula, passwrd, email, rol)
+VALUES ('mikematute', 'A00815329', 'mikematute01', 'mikematute@hotmail.com', '9');
 
 INSERT INTO Thread(id, board, name)
 VALUES  (99, 'Main', 'Bienvenidos');

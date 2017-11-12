@@ -33,53 +33,42 @@
 
   }
 
-  function loginFunction(){
+  function loginFunction()
+  {
     $uName = $_POST["uName"];
-		$uPass = $_POST["uPass"];
-		$rem = $_POST["rem"];
+    $uPassword = $_POST["uPassword"];
 
-    $logResponse = attemptLogin($uName, $uPass);
+    $loginResponse = attemptLogin($uName, $uPassword);
 
-    if ($logResponse["mess"] == "SUCCESS"){
-      $response = array("firstname"=>$logResponse["fName"], "lastname"=>$logResponse["lName"]);
-
-      sessionStart($logResponse['fName'], $logResponse['lName']);
-
-      if ($rem == "true"){
-        cook("cUsername", $uName);
-	    }
+    if ($loginResponse["MESSAGE"] == "SUCCESS")
+    {
+      $response = array("uName"=>$loginResponse["username"], "uMatricula"=>$loginResponse["matricula"]);
 
       echo json_encode($response);
-    }else{
-      genericErrorFunction($logResponse["mess"]);
+    }
+    else
+    {
+      genericErrorFunction($loginResponse["MESS"]);
     }
   }
 
+
   function regisFunction(){
-    $uName = $_POST["uName"];
-		$uPass = $_POST["uPass"];
-		$fName = $_POST["fName"];
-		$lName = $_POST["lName"];
+    $uName = $_POST["userName"];
+    $uMatr = $_POST["userMatr"];
+		$uPass = $_POST["userPassword"];
 		$email = $_POST["email"];
-		$country = $_POST["country"];
-		$gender = $_POST["gender"];
-
-    $logResponse = regisUser($fName, $lName, $uName, $uPass, $email, $gender, $country);
-
+    $logResponse = regisUser($uName, $uMatr, $uPass, $email);
     if ($logResponse["mess"] == "SUCCESS"){
-
-      sessionStart($fName, $lName);
-
+      sessionStart($uName, $uMatr);
       echo json_encode("New User Registered Succesfully");
     }else{
       genericErrorFunction($logResponse["mess"]);
     }
-
   }
-
   function genericErrorFunction($errorcode){
     switch($errorcode){
-      case "500" :  header("HTTP/1.1 500 Bad connection, portal down");
+      case "500" :  header("HTTP/1.1 500 Bad connection, portal down. Sorry");
   		              die("The server is down, we couldn't stablish the data base connection.");
                     break;
       case "406a" : header('HTTP/1.1 406 Session not found yet.');
@@ -94,7 +83,6 @@
                     die("Please provide another Username.");
     }
   }
-
   function cook($stri, $valu){
     setcookie($stri, $valu);
   }
@@ -108,21 +96,21 @@
   	}
   }
 
-  function sessionStart($fName, $lName){
+  function sessionStart($uName, $uMatr){
     session_start();
-    if (!isset($_SESSION['fName'])){
-      $_SESSION['fName'] = $fName;
+    if (!isset($_SESSION['uName'])){
+      $_SESSION['uName'] = $uName;
     }
-    if (!isset($_SESSION['lName'])){
-      $_SESSION['lName'] = $lName;
+    if (!isset($_SESSION['uMatr'])){
+      $_SESSION['uMatr'] = $uMatr;
     }
   }
 
   function getSession(){
     session_start();
-  	if (isset($_SESSION['fName']) && isset($_SESSION['lName']))
+  	if (isset($_SESSION['uName']) && isset($_SESSION['uName']))
   	{
-  		echo json_encode(array('fName' => $_SESSION['fName'], 'lName' => $_SESSION['lName']));
+  		echo json_encode(array('uName' => $_SESSION['uName'], 'uMatr' => $_SESSION['uMatr']));
   	}
   	else
   	{
@@ -132,9 +120,9 @@
 
   function delSess(){
     session_start();
-  	if (isset($_SESSION['fName']) && isset($_SESSION['lName'])){
-  		unset($_SESSION['fName']);
-  		unset($_SESSION['lName']);
+  	if (isset($_SESSION['uName']) && isset($_SESSION['uMatr'])){
+  		unset($_SESSION['uName']);
+  		unset($_SESSION['uMatr']);
   		session_destroy();
   		echo json_encode(array('success' => 'Session deleted'));
   	}

@@ -14,50 +14,51 @@
     }
   }
 
-  function attemptLogin($user, $pass){
+  function attemptLogin($userName, $userPassword)
+  {
     $connection = databaseConnection();
 
-    if ($connection != null){
-      $sql = "SELECT * FROM Users WHERE username = '$user' AND passwrd = '$pass'";
-
+    if ($connection != null)
+    {
+      $sql = "SELECT * FROM Users WHERE username = '$userName' AND passwrd = '$userPassword'";
       $result = $connection->query($sql);
 
-  		if ($result->num_rows > 0){
-  			while ($row = $result->fetch_assoc()){
-          $response = array("fName"=>$row["fName"],
-  													"lName"=>$row["lName"],
-                            "mess"=>"SUCCESS");
-  			}
+      if ($result->num_rows > 0)
+      {
+        while ($row = $result->fetch_assoc())
+        {
+          $response = array("uName"=>$row["username"], "uMatricula"=>$row["matricula"], "MESSAGE"=>"SUCCESS");
+        }
 
         $connection->close();
         return $response;
-
-  		}else{
-        $connection->close();
-        return array("mess"=>"406");
       }
-    }else{
-      return array("mess"=>"500");
+      else
+      {
+        $connection->close();
+        return array("MESSAGE"=>"406");
+      }
     }
+    else
+    {
+      return array("MESSAGE"=>"500");
+    }
+
   }
 
-  function regisUser($fName, $lName, $uName, $uPass, $email, $gender, $country){
-    $connection = databaseConnection();
 
+  function regisUser($uName, $uMatr, $uPass, $email){
+    $connection = databaseConnection();
     if ($connection != null){
       $sql = "SELECT * FROM Users WHERE username = '$uName'";
-
   		$result = $connection->query($sql);
-
   		if ($result->num_rows > 0){
         $connection->close();
         return array("mess"=>"409");
-
   		}else{
-  			$sql = "INSERT INTO Users(fName, lName, username, passwrd, email, gender, country) VALUES  ('$fName', '$lName', '$uName', '$uPass', '$email', '$gender', '$country')";
+  			$sql = "INSERT INTO Users(username, matricula, passwrd, email, rol) VALUES  ('$uName', '$uMatr', '$uPass', '$email', '0')";
   			if (mysqli_query($connection, $sql)){
           $response = array("mess"=>"SUCCESS");
-
           $connection->close();
           return $response;
   			}else{
