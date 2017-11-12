@@ -27,7 +27,7 @@
    });
 
    $("#cancelButton").on("click", function(){
-        window.location.replace("index.html");
+        window.location.replace("./index.html");
    });
 
 });

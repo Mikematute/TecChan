@@ -27,7 +27,7 @@
       {
         while ($row = $result->fetch_assoc())
         {
-          $response = array("uName"=>$row["username"], "uMatricula"=>$row["matricula"], "MESSAGE"=>"SUCCESS");
+          $response = array("uName"=>$row["username"], "uMatricula"=>$row["matricula"], "uRol"=>$row["rol"] , "MESSAGE"=>"SUCCESS");
         }
 
         $connection->close();

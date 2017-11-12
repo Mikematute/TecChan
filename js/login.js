@@ -44,9 +44,8 @@ $(document).ready(function(){
 
 			});
 		}
-
-		$("#cancelButton").on("click", function(){
-        window.location.replace("index.html");
-  		});
+	});
+	$("#cancelButton").on("click", function(){
+			window.location.replace("./index.html");
 	});
 });

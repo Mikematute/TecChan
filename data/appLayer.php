@@ -42,9 +42,8 @@
 
     if ($loginResponse["MESSAGE"] == "SUCCESS")
     {
-      $response = array("uName"=>$loginResponse["username"], "uMatricula"=>$loginResponse["matricula"]);
-
-      echo json_encode($response);
+      sessionStart($loginResponse["uName"], $loginResponse["uMatricula"], $loginResponse["uRol"]);
+      echo json_encode("Log In Successfull");
     }
     else
     {
@@ -60,7 +59,7 @@
 		$email = $_POST["email"];
     $logResponse = regisUser($uName, $uMatr, $uPass, $email);
     if ($logResponse["mess"] == "SUCCESS"){
-      sessionStart($uName, $uMatr);
+      sessionStart($uName, $uMatr, '0');
       echo json_encode("New User Registered Succesfully");
     }else{
       genericErrorFunction($logResponse["mess"]);
@@ -96,7 +95,7 @@
   	}
   }
 
-  function sessionStart($uName, $uMatr){
+  function sessionStart($uName, $uMatr, $uRol){
     session_start();
     if (!isset($_SESSION['uName'])){
       $_SESSION['uName'] = $uName;
@@ -104,13 +103,16 @@
     if (!isset($_SESSION['uMatr'])){
       $_SESSION['uMatr'] = $uMatr;
     }
+    if (!isset($_SESSION['uRol'])){
+      $_SESSION['uRol'] = $uRol;
+    }
   }
 
   function getSession(){
     session_start();
-  	if (isset($_SESSION['uName']) && isset($_SESSION['uName']))
+  	if (isset($_SESSION['uName']) && isset($_SESSION['uMatr']) && isset($_SESSION['uRol']))
   	{
-  		echo json_encode(array('uName' => $_SESSION['uName'], 'uMatr' => $_SESSION['uMatr']));
+  		echo json_encode(array('uName' => $_SESSION['uName'], 'uMatr' => $_SESSION['uMatr'], 'uRol' => $_SESSION['uRol']));
   	}
   	else
   	{
@@ -118,11 +120,14 @@
   	}
   }
 
+  //&& isset($_SESSION['uMatr']) && isset($_SESSION['uRol'])
+
   function delSess(){
     session_start();
-  	if (isset($_SESSION['uName']) && isset($_SESSION['uMatr'])){
+  	if (isset($_SESSION['uName']) && isset($_SESSION['uMatr']) && isset($_SESSION['uRol'])){
   		unset($_SESSION['uName']);
   		unset($_SESSION['uMatr']);
+      unset($_SESSION['uRol']);
   		session_destroy();
   		echo json_encode(array('success' => 'Session deleted'));
   	}

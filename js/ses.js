@@ -11,12 +11,40 @@ $(document).ready(function(){
 		ContentType : "application/json",
 		dataType : "json",
 		success : function(dataReceived){
-			$("#ses").html( "<p>" + dataReceived.uName + "</p> <button type=\"button\" id=\"logout\">LogOut</button>" );
+			console.log(dataReceived);
+			$("#ses").html( "<t>" + dataReceived.uName + "</t> <button type=\"button\" id=\"logout\">LogOut</button>" );
 		},
 		error : function(errorMessage){
-			$("#ses").html( "<button type=\"button\" href=./login.html>Login</button>" );
+			$("#ses").html( "<button type=\"button\" id=\"login\">Login</button><button type=\"button\" id=\"regis\">Register</button>" );
 		}
 
+	});
+
+	$("#ses").on("click", "#logout", function(){
+		var jsonDel = {
+												"action": "delSess"
+											};
+		$.ajax({
+			url : "./data/appLayer.php",
+			type : "POST",
+			data : jsonDel,
+			ContentType : "application/json",
+			dataType : "json",
+			success : function(dataReceived){
+				window.location.replace("./index.html");
+			},
+			error : function(errorMessage){
+				//No deberia salir mal
+			}
+
+		});
+	});
+
+	$("#ses").on("click", "#login", function(){
+		window.location.replace("./login.html");
+	});
+	$("#ses").on("click", "#regis", function(){
+		window.location.replace("./registration.html");
 	});
 
 
