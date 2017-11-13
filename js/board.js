@@ -1,5 +1,10 @@
 $(document).ready(function(){
 
+  var sFlag = false;
+  var uName = "Anon";
+  var uMat = "";
+  var uRol = "";
+
   function getUrlParameter(paramName){
       var results = new RegExp('[\?&]' + paramName + '=([^&#]*)').exec(window.location.href);
       return results[1] || 0;
@@ -45,7 +50,56 @@ $(document).ready(function(){
     $(location).attr('href', 'Thread.html?thread='+thread);
 	});
 
+  var jsonNew = {
+											"action": "getSession"
+										};
+	$.ajax({
+		url : "./data/appLayer.php",
+		type : "POST",
+		data : jsonNew,
+		ContentType : "application/json",
+		dataType : "json",
+		success : function(dataReceived){
+      var newHtml = "";
+  		newHtml += '<fieldset>';
+  		newHtml += '<label>Thread Name</label><br>';
+  		newHtml += '<input type=\"text\" class=\"textClass\" id=\"tName\"><br>';
+      newHtml += '<input type="submit" id="submitBtt" value="Create!">';
+  		newHtml += '</fieldset>';
 
+      $("#newThred").html(newHtml);
+		},
+		error : function(errorMessage){
+			var newHtml = "<t>No Puede Crear un nuevo Thread como anonimo</t>";
+
+      $("#newThred").html(newHtml);
+		}
+
+	});
+
+  $("#newThred").on("click", "#submitBtt", function(){
+    var tName = $("#tName").val();
+    var bName = getUrlParameter("board")
+    var jsonNThread = {
+  											"action": "nThread",
+                        "tName": tName,
+                        "tBoard": bName
+  										};
+  	$.ajax({
+  		url : "./data/appLayer.php",
+  		type : "POST",
+  		data : jsonNThread,
+  		ContentType : "application/json",
+  		dataType : "json",
+  		success : function(dataReceived){
+        window.location.reload();
+  		},
+  		error : function(errorMessage){
+  			console.log(errorMessage);
+  		}
+
+  	});
+	});
 
 
 });

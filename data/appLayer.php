@@ -30,6 +30,8 @@
                           break;
     case "getPend":       gPend();
                           break;
+    case "nThread":       nThread();
+                          break;
 
   }
 
@@ -65,6 +67,7 @@
       genericErrorFunction($logResponse["mess"]);
     }
   }
+
   function genericErrorFunction($errorcode){
     switch($errorcode){
       case "500" :  header("HTTP/1.1 500 Bad connection, portal down. Sorry");
@@ -220,6 +223,19 @@
     }else{
       genericErrorFunction($logResponse["mess"]);
       //genericErrorFunction("500");
+    }
+  }
+
+  function nThread(){
+    $tBoard = $_POST["tBoard"];
+    $tName = $_POST["tName"];
+
+    $logResponse = createThread($tBoard, $tName);
+    if ($logResponse["mess"] == "SUCCESS"){
+
+      echo json_encode("New Thread Successfull");
+    }else{
+      genericErrorFunction($logResponse["mess"]);
     }
   }
 

@@ -11,10 +11,15 @@ $(document).ready(function(){
 		ContentType : "application/json",
 		dataType : "json",
 		success : function(dataReceived){
-			console.log(dataReceived);
+			//console.log(dataReceived);
+			var sFlag = true;
+			var uName = dataReceived.uName;
+			var uMat = dataReceived.uMatr;
+			var uRol = dataReceived.uRol;
 			$("#ses").html( "<t>" + dataReceived.uName + "</t> <button type=\"button\" id=\"logout\">LogOut</button>" );
 		},
 		error : function(errorMessage){
+			var sFlag = false;
 			$("#ses").html( "<button type=\"button\" id=\"login\">Login</button><button type=\"button\" id=\"regis\">Register</button>" );
 		}
 

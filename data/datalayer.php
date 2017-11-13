@@ -259,5 +259,30 @@
     }
   }
 
+  function createThread($tBoard, $tName){
+    $connection = databaseConnection();
+
+    if ($connection != null){
+      $sql = "SELECT * FROM Thread WHERE board = '$tBoard' AND name = '$tName'";
+  		$result = $connection->query($sql);
+  		if ($result->num_rows > 0){
+        $connection->close();
+        return array("mess"=>"409");
+  		}else{
+  			$sql = "INSERT INTO Thread(board, name) VALUES  ('$tBoard', '$tName')";
+  			if (mysqli_query($connection, $sql)){
+          $response = array("mess"=>"SUCCESS");
+          $connection->close();
+          return $response;
+  			}else{
+          $connection->close();
+  				return array("mess"=>"500");
+  			}
+  		}
+    }else{
+      return array("mess"=>"500");
+    }
+  }
+
 
 ?>
