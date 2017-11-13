@@ -64,4 +64,72 @@ $(document).ready(function(){
 
 	});
 
+  var jsonNew = {
+											"action": "getSession"
+										};
+	$.ajax({
+		url : "./data/appLayer.php",
+		type : "POST",
+		data : jsonNew,
+		ContentType : "application/json",
+		dataType : "json",
+		success : function(dataReceived){
+      var newHtml = "";
+  		newHtml += '<fieldset>';
+  		newHtml += '<label>Comment</label><br>';
+      newHtml += '<textarea class=\"textClass\" id=\"pCont\" rows="4" cols="50"></textarea><br>';
+      newHtml += '<input type="submit" id="submitBtt" value="Create!">';
+  		newHtml += '</fieldset>';
+
+      $("#newPost").html(newHtml);
+		},
+		error : function(errorMessage){
+			var newHtml = "<t>No Puede Crear un nuevo Thread como anonimo</t>";
+
+      $("#newPost").html(newHtml);
+		}
+	});
+
+  $("#newPost").on("click", "#submitBtt", function(){
+    var pCont = $("#pCont").val();
+    var tID = getUrlParameter("thread")
+    var jsonUser = {
+  											"action": "getSession"
+  										};
+  	$.ajax({
+  		url : "./data/appLayer.php",
+  		type : "POST",
+  		data : jsonUser,
+  		ContentType : "application/json",
+  		dataType : "json",
+  		success : function(dataReceived){
+        var uName = dataReceived.uName;
+        var jsonNPost = {
+      											"action": "nPost",
+                            "pCont": pCont,
+                            "tID": tID,
+                            "uName": uName
+      										};
+      	$.ajax({
+      		url : "./data/appLayer.php",
+      		type : "POST",
+      		data : jsonNPost,
+      		ContentType : "application/json",
+      		dataType : "json",
+      		success : function(dataReceived){
+            window.location.reload();
+      		},
+      		error : function(errorMessage){
+      			console.log(errorMessage);
+      		}
+
+      	});
+  		},
+  		error : function(errorMessage){
+  			window.location.reload();
+  		}
+  	});
+
+	});
+
 });

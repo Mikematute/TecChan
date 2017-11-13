@@ -32,6 +32,8 @@
                           break;
     case "nThread":       nThread();
                           break;
+    case "nPost":         nPost();
+                          break;
 
   }
 
@@ -231,6 +233,20 @@
     $tName = $_POST["tName"];
 
     $logResponse = createThread($tBoard, $tName);
+    if ($logResponse["mess"] == "SUCCESS"){
+
+      echo json_encode("New Thread Successfull");
+    }else{
+      genericErrorFunction($logResponse["mess"]);
+    }
+  }
+
+  function nPost(){
+    $pCont = $_POST["pCont"];
+    $tID = $_POST["tID"];
+    $uName = $_POST["uName"];
+
+    $logResponse = createPost($tID, $uName, $pCont);
     if ($logResponse["mess"] == "SUCCESS"){
 
       echo json_encode("New Thread Successfull");

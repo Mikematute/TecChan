@@ -284,5 +284,31 @@
     }
   }
 
+  function createPost($tID, $uName, $pCont){
+    $connection = databaseConnection();
+
+    if ($connection != null){
+      $sql = "SELECT * FROM Post WHERE user = '$uName' AND content = '$pCont'";
+  		$result = $connection->query($sql);
+  		if ($result->num_rows > 0){
+        $connection->close();
+        return array("mess"=>"409");
+  		}else{
+        $now = date("Y-m-d");
+  			$sql = "INSERT INTO Post(ThreadId, user, content, fecha) VALUES  ('$tID', '$uName', '$pCont', '$now')";
+  			if (mysqli_query($connection, $sql)){
+          $response = array("mess"=>"SUCCESS");
+          $connection->close();
+          return $response;
+  			}else{
+          $connection->close();
+  				return array("mess"=>"500");
+  			}
+  		}
+    }else{
+      return array("mess"=>"500");
+    }
+  }
+
 
 ?>
