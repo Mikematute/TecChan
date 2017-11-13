@@ -32,7 +32,7 @@ $(document).ready(function(){
 				//console.log(data[ik]["id"]);
 
 				newHtml += '<div class="Thread">';
-				newHtml += '<h3 class="ThreadName" id=' + data[ik]["id"] + '>' + data[ik]["thread"] + '<h3>';
+				newHtml += '<h3 class="ThreadName" id=' + data[ik]["id"] + '>' + data[ik]["thread"] + '</h3>';
 				newHtml += '</div>';
 
 			}

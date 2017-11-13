@@ -49,9 +49,9 @@ $(document).ready(function(){
 				//console.log(data[ik]["id"]);
 
 				newHtml += '<div class="Post">';
-				newHtml += '<p>' + data[ik]["post"] + '<p>';
-        newHtml += '<p> User:' + data[ik]["username"] + '<p>';
-        newHtml += '<p> Date:' + data[ik]["date"] + '<p>';
+				newHtml += '<p>' + data[ik]["post"] + '</p>';
+        newHtml += '<p> User:' + data[ik]["username"] + '</p>';
+        newHtml += '<p> Date:' + data[ik]["date"] + '</p>';
 				newHtml += '</div>';
 
 			}

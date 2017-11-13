@@ -34,6 +34,12 @@
                           break;
     case "nPost":         nPost();
                           break;
+    case "nTip":          nTip();
+                          break;
+    case "yTip":          yTip();
+                          break;
+    case "dTip":          dTip();
+                          break;
 
   }
 
@@ -249,7 +255,46 @@
     $logResponse = createPost($tID, $uName, $pCont);
     if ($logResponse["mess"] == "SUCCESS"){
 
-      echo json_encode("New Thread Successfull");
+      echo json_encode("New Post Successfull");
+    }else{
+      genericErrorFunction($logResponse["mess"]);
+    }
+  }
+
+  function nTip(){
+    $pCont = $_POST["pCont"];
+    $uName = $_POST["uName"];
+
+    $logResponse = createTip($uName, $pCont);
+    if ($logResponse["mess"] == "SUCCESS"){
+
+      echo json_encode("New Tip Successfull");
+    }else{
+      genericErrorFunction($logResponse["mess"]);
+    }
+  }
+
+  function yTip(){
+    $tID = $_POST["tID"];
+    $status = '1';
+
+    $logResponse = updateTip($tID, $status);
+    if ($logResponse["mess"] == "SUCCESS"){
+
+      echo json_encode("Tip Updated");
+    }else{
+      genericErrorFunction($logResponse["mess"]);
+    }
+  }
+
+  function dTip(){
+    $tID = $_POST["tID"];
+    $status = '3';
+
+    $logResponse = updateTip($tID, $status);
+    if ($logResponse["mess"] == "SUCCESS"){
+
+      echo json_encode("Tip Updated");
     }else{
       genericErrorFunction($logResponse["mess"]);
     }

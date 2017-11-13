@@ -310,5 +310,50 @@
     }
   }
 
+  function createTip($uName, $pCont){
+    $connection = databaseConnection();
+
+    if ($connection != null){
+      $sql = "SELECT * FROM Tips WHERE user = '$uName' AND content = '$pCont'";
+  		$result = $connection->query($sql);
+  		if ($result->num_rows > 0){
+        $connection->close();
+        return array("mess"=>"409");
+  		}else{
+        $now = date("Y-m-d");
+        $state = "2";
+  			$sql = "INSERT INTO Tips(user, content, fecha, state) VALUES  ('$uName', '$pCont', '$now', '$state')";
+  			if (mysqli_query($connection, $sql)){
+          $response = array("mess"=>"SUCCESS");
+          $connection->close();
+          return $response;
+  			}else{
+          $connection->close();
+  				return array("mess"=>"500");
+  			}
+  		}
+    }else{
+      return array("mess"=>"500");
+    }
+  }
+
+  function updateTip($tID, $status){
+    $connection = databaseConnection();
+
+    if ($connection != null){
+      $sql = "UPDATE Tips SET state='$status' WHERE id='$tID'";
+      if (mysqli_query($connection, $sql)){
+        $response = array("mess"=>"SUCCESS");
+        $connection->close();
+        return $response;
+      }else{
+        $connection->close();
+        return array("mess"=>"500");
+      }
+    }else{
+      return array("mess"=>"500");
+    }
+  }
+
 
 ?>

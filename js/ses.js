@@ -1,5 +1,24 @@
 $(document).ready(function(){
-	//variable for Login Button
+	//Implement Menu function
+	/*
+	<li id=#HOME> Home </li>
+	<li id=#SEARCH> Search </li>
+	<li id=#TIPS> Tips </li>
+	<li id=#ABOUT> About </li>
+	*/
+
+	$("#HOME").on("click", function(){
+    window.location.replace("./index.html");
+	});
+	$("#SEARCH").on("click", function(){
+    window.location.replace("./Search.html");
+	});
+	$("#TIPS").on("click", function(){
+    window.location.replace("./Tips.html");
+	});
+	$("#ABOUT").on("click", function(){
+    window.location.replace("./About.html");
+	});
 
 	var jsonSess = {
 											"action": "getSession"
