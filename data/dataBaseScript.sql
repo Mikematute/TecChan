@@ -37,7 +37,7 @@ VALUES  (101, 'Welcome', 'No se que poner aqui'),
 (103, 'Welcome', 'Hola Soy William'),
 (104, 'Alumnos', 'Tengo un problema con php'),
 (105, 'Welcome', 'Hola soy Analisa'),
-(106, 'Alumnos', 'Amo a Oziel y no se como decirle'),
+(106, 'Alumnos', 'Cat Imposium'),
 (107, 'Welcome', 'mi nombre es Juan Jose');
 
 INSERT INTO Post(ThreadId, user, content, fecha)
@@ -49,13 +49,13 @@ VALUES  (103, 'mikematute', 'Bienvenidos al foro chavos. este es un mensaje de b
 (102, 'mikematute', 'La clase es hermosa', '2017-10-24'),
 (104, 'mikematute', 'php no me dice que hago mal', '2017-10-24'),
 (105, 'mikematute', 'Analisa o Analista. no se que es peor', '2017-10-24'),
-(106, 'mikematute', 'Soy su fan y no se que onda', '2017-10-24'),
+(106, 'mikematute', 'Eat grass, throw it back up hunt by meowing loudly at 5am', '2017-10-24'),
 (107, 'mikematute', 'Y me fui a Google', '2017-10-24'),
 (103, 'mikematute', 'Oigan. Se que soy raro pero porfa no me ignoren', '2017-10-25');
 
 INSERT INTO Tips(user, content, fecha, state)
 VALUES  ('mikematute', 'Recuerden Organizarse con sus projectos', '2017-09-11', 1),
-('mikematute', 'Recuerden no jugarle al vergas', '2017-09-11', 2),
+('mikematute', 'Recuerden no jugarle al -----', '2017-09-11', 2),
 ('mikematute', 'EEeeeeeemmmmmm', '2017-09-11', 2),
 ('mikematute', 'Siempre es bueno tomar la responsabilidad de no hacer la tarea', '2017-09-11', 2),
 ('mikematute', 'Recuerden Organizarse con sus projectos', '2017-09-11', 3);
