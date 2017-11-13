@@ -49,16 +49,17 @@ h3 {
 }
 
 #boardName {
-    background-color: #370951;
+    background-color: #492073;
     border-bottom: 1px solid #263c30;
     color:#e04000;
-    margin: 0;
+    margin-top: 30px;
+    margin-left: 10px;
+    margin-right: 10px;
     padding: 8px;
-    font-size: 14px;
     border-radius: 5px 5px 0 0;
     -moz-border-radius: 5px 5px 0 0;
     -webkit-border-radius: 5px 5px 0 0;
-    font-size: 15pt;
+    font-size: 17pt;
 }
 
 .descrip{
@@ -71,6 +72,7 @@ h3 {
     color: #96b4aa;
     margin-left:20px;
     margin-right:20px;
+    margin-top: 10px;
     border-radius: 6px;
     padding: 1px;
 }
@@ -142,49 +144,12 @@ h3 {
     padding: 20px 100px;
 }
 
-legend{
-    font-size: 1.3em;
-    font-weight: 900;
-}
-
-table {
-    font-family: 'Arial';
-    margin: 25px auto;
-    border-collapse: collapse;
-    border: 1px solid #eee;
-    border-bottom: 2px solid #00cccc;
-    box-shadow: 0px 0px 20px rgba(0,0,0,0.10),
-     0px 10px 20px rgba(0,0,0,0.05),
-     0px 20px 20px rgba(0,0,0,0.05),
-     0px 30px 20px rgba(0,0,0,0.05);
- }
-
-th, td {
-    color: #999;
-    border: 1px solid #eee;
-    padding: 12px 35px;
-    border-collapse: collapse;
-}
-th {
-    background: #00cccc;
-    color: #fff;
-    text-transform: uppercase;
-    font-size: 12px;
-}
-
-tr:hover {
-    background: #f4f4f4;
-}
-
-td:hover {
-    color: #555;
-}
-
 ul{
+    background-color: #140814;
+    color: #96b4aa;
     columns: 4;
-    -webkit-columns: 2;
-    -moz-columns: 2;
-    list-style-type: none;
+    -webkit-columns: 4;
+    -moz-columns: 4;
 }
 
 li{
@@ -192,22 +157,11 @@ li{
 }
 
 ul#menu li:hover, ul#menu li.selected{
-    background-color: #3A96FF;
+    background-color: #370951;
     color: #FFFFFF;
     cursor: pointer;
 }
 
-select{
-    font-size: 2em;
-}
-
-#listContainer{
-    border: 1px solid #00cccc;
-    width: 40%;
-    margin: auto;
-}
-
-#dropdownMenuContainer{
-    width: 35%;
-    margin: auto;
+h3:hover {
+    cursor: pointer;
 }
